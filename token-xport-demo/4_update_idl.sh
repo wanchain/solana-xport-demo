@@ -1,0 +1,1 @@
+cp ./target/idl/token_xport_demo.json  app/idl/

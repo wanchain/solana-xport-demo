@@ -1,0 +1,1 @@
+solana address --keypair=./target/deploy/token_xport_demo-keypair.json

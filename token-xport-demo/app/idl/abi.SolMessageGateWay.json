@@ -1,0 +1,660 @@
+{
+  "address": "9J17hVJXCcMsD1E7Kv5yNKEgQAhwcu4NvtPQvXkgesiV",
+  "metadata": {
+    "name": "gate_way",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "inbound_call",
+      "discriminator": [
+        66,
+        192,
+        85,
+        144,
+        132,
+        62,
+        190,
+        5
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "app_program"
+        },
+        {
+          "name": "cpi_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  112,
+                  105,
+                  83,
+                  105,
+                  103,
+                  110,
+                  101,
+                  114
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "task_id_history",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  84,
+                  97,
+                  115,
+                  107,
+                  73,
+                  68
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "task_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "config_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103,
+                  68,
+                  97,
+                  116,
+                  97
+                ]
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                100,
+                11,
+                201,
+                223,
+                51,
+                197,
+                221,
+                59,
+                138,
+                31,
+                16,
+                137,
+                186,
+                128,
+                244,
+                15,
+                93,
+                175,
+                202,
+                35,
+                91,
+                223,
+                115,
+                231,
+                237,
+                127,
+                90,
+                65,
+                10,
+                245,
+                185,
+                88
+              ]
+            }
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "task_id",
+          "type": "bytes"
+        },
+        {
+          "name": "ttl",
+          "type": "u64"
+        },
+        {
+          "name": "network_id",
+          "type": "u128"
+        },
+        {
+          "name": "encode_info",
+          "type": "bytes"
+        },
+        {
+          "name": "encoded_proof",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [],
+      "args": []
+    },
+    {
+      "name": "outbound_call",
+      "discriminator": [
+        191,
+        90,
+        21,
+        148,
+        53,
+        150,
+        234,
+        127
+      ],
+      "accounts": [
+        {
+          "name": "nonce_account",
+          "docs": [
+            "Nonce account - PDA derived from the key components",
+            "Note: Custom validation ensures peer_chain_app_address fits within seed limits"
+          ],
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "docs": [
+            "Transaction signer (the actual user/authority), who pay for the fee (including create new nonce PDA account)"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "cpi_signer",
+          "docs": [
+            "CPI Signer - PDA from the calling program (gw-app)"
+          ],
+          "signer": true
+        },
+        {
+          "name": "config_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  67,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103,
+                  68,
+                  97,
+                  116,
+                  97
+                ]
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                100,
+                11,
+                201,
+                223,
+                51,
+                197,
+                221,
+                59,
+                138,
+                31,
+                16,
+                137,
+                186,
+                128,
+                244,
+                15,
+                93,
+                175,
+                202,
+                35,
+                91,
+                223,
+                115,
+                231,
+                237,
+                127,
+                90,
+                65,
+                10,
+                245,
+                185,
+                88
+              ]
+            }
+          }
+        },
+        {
+          "name": "system_program",
+          "docs": [
+            "System program for account creation"
+          ],
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "peer_chain_id",
+          "type": "u128"
+        },
+        {
+          "name": "peer_chain_app_address",
+          "type": "bytes"
+        },
+        {
+          "name": "func_call_data",
+          "type": "bytes"
+        },
+        {
+          "name": "source_contract_address",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "gas_limit",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "ConfigData",
+      "discriminator": [
+        221,
+        205,
+        236,
+        51,
+        101,
+        165,
+        133,
+        250
+      ]
+    },
+    {
+      "name": "TaskIdHistory",
+      "discriminator": [
+        84,
+        163,
+        121,
+        246,
+        183,
+        117,
+        35,
+        221
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "CrosschainFunctionCall",
+      "discriminator": [
+        99,
+        69,
+        122,
+        161,
+        86,
+        143,
+        244,
+        192
+      ]
+    },
+    {
+      "name": "InboundTaskExecuted",
+      "discriminator": [
+        137,
+        53,
+        21,
+        252,
+        218,
+        109,
+        209,
+        209
+      ]
+    },
+    {
+      "name": "OutboundTaskExecuted",
+      "discriminator": [
+        239,
+        220,
+        151,
+        178,
+        68,
+        111,
+        1,
+        31
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotAnAdmin"
+    },
+    {
+      "code": 6001,
+      "name": "NotAnOperator"
+    },
+    {
+      "code": 6002,
+      "name": "HasInitialized"
+    },
+    {
+      "code": 6003,
+      "name": "AmountShouldGreatThanZero",
+      "msg": "Amount should > 0 ."
+    },
+    {
+      "code": 6004,
+      "name": "SigRecoverFailed",
+      "msg": "Signature recovery failed."
+    },
+    {
+      "code": 6005,
+      "name": "SigVerificationFailed",
+      "msg": "Signature verification failed."
+    },
+    {
+      "code": 6006,
+      "name": "WrongCCTPFeeDataAccount",
+      "msg": "CCTP fee data account verify failed."
+    },
+    {
+      "code": 6007,
+      "name": "WrongFeeReceiver",
+      "msg": "Fee receiver verify failed."
+    },
+    {
+      "code": 6008,
+      "name": "WrongGwAppAddress",
+      "msg": "Wrong App address."
+    },
+    {
+      "code": 6009,
+      "name": "InvalidDiscriminator",
+      "msg": "Invalid discriminator: must be exactly 8 bytes"
+    },
+    {
+      "code": 6010,
+      "name": "InsufficientAccounts",
+      "msg": "Insufficient accounts: need at least 5 accounts for wmb_receive"
+    },
+    {
+      "code": 6011,
+      "name": "InsufficientSignatures",
+      "msg": "Insufficient signatures provided"
+    },
+    {
+      "code": 6012,
+      "name": "TaskAlreadyExecuted",
+      "msg": "Task has already been executed"
+    },
+    {
+      "code": 6013,
+      "name": "NotMatchWithCpiSigner",
+      "msg": "Not match with the CPI signer"
+    },
+    {
+      "code": 6014,
+      "name": "TtlExpired",
+      "msg": "TTL has expired"
+    }
+  ],
+  "types": [
+    {
+      "name": "ConfigData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "ttl",
+            "type": "i64"
+          },
+          {
+            "name": "gpk",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "gpk_slot_start",
+            "type": "i64"
+          },
+          {
+            "name": "gpk_slot_end",
+            "type": "i64"
+          },
+          {
+            "name": "new_gpk",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "new_gpk_slot_start",
+            "type": "i64"
+          },
+          {
+            "name": "new_gpk_slot_end",
+            "type": "i64"
+          },
+          {
+            "name": "new_gpk_slot_update",
+            "type": "i64"
+          },
+          {
+            "name": "fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "cross_delegate",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_manager",
+            "type": "pubkey"
+          },
+          {
+            "name": "cctp_admin_board",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CrosschainFunctionCall",
+      "docs": [
+        "Event emitted when a crosschain function call is initiated"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "task_id",
+            "docs": [
+              "Unique task identifier for the crosschain call"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "peer_chain_id",
+            "docs": [
+              "Target blockchain network ID"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "peer_chain_app_address",
+            "docs": [
+              "Target contract address on the peer chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "finally_function_call_data",
+            "docs": [
+              "Serialized function call data to be executed on the target chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "gas_limit",
+            "docs": [
+              ""
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InboundTaskExecuted",
+      "docs": [
+        "Event emitted when an inbound task is executed"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "task_id",
+            "docs": [
+              "Unique task identifier for the crosschain call"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "local_chain_id",
+            "docs": [
+              "Current chain network ID"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "local_chain_app_address",
+            "docs": [
+              "App contract address current chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "finally_function_call_data",
+            "docs": [
+              "Serialized function call data to be executed on the target chain"
+            ],
+            "type": "bytes"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OutboundTaskExecuted",
+      "docs": [
+        "Event emitted when an outbound task is executed"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "task_id",
+            "docs": [
+              "Unique task identifier for the crosschain call"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "peer_chain_id",
+            "docs": [
+              "Target blockchain network ID"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "peer_chain_app_address",
+            "docs": [
+              "Target contract address on the peer chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "finally_function_call_data",
+            "docs": [
+              "Serialized function call data to be executed on the target chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "gas_limit",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TaskIdHistory",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "b_executed",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}

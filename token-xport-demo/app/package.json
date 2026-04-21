@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "0_initialize.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ethers": "^5.0.0",
+    "ethereumjs-util": "^7.1.5",
+    "borsh2": "npm:borsh@2.0.0",
+    "secp256k1": "^5.0.1"
+  }
+}
