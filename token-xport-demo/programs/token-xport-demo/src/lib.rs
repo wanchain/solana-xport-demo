@@ -207,6 +207,7 @@ pub mod token_xport_demo {
 
                         unlock_token(ctx, message_data.amount)?;
 
+
                     },
                     _=> {
                         msg!("Unknown message type: {}", message_data.message_type);
@@ -554,5 +555,7 @@ pub struct FunctionCallData {
 pub struct Settings {
     pub gateway_program: Pubkey,
     pub authority: Pubkey,
+    pub peer_contract: Vec<u8>,
+
 
 }
