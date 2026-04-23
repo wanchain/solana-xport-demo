@@ -18,7 +18,7 @@ class TokenDemoApp {
         this.connection = new anchor.web3.Connection(config.nodeUrl);
         this.provider = new anchor.AnchorProvider(this.connection, this.wallet, 'recent');
 
-        this.program = new anchor.Program(config.idl.dempApp, this.provider);
+        this.program = new anchor.Program(config.idl.demoApp, this.provider);
     }
 
     async getSetting() {
@@ -28,12 +28,14 @@ class TokenDemoApp {
         console.log('settingData: ', settingData);
         console.log('gateway: ', settingData.gatewayProgram.toBase58());
         console.log('authority: ', settingData.authority.toBase58());
+        console.log('peerScAddr: ', Buffer.from(settingData.peerContract).toString('hex'));
 
     }
 
-    async initialize(gatewayAddress) {
+    async initialize(gatewayAddress, peerContractAddr) {
         let gatewayPubkey = new PublicKey(gatewayAddress);
         let usdcPubKey =  new PublicKey(config.scAddr.USDC);
+        let peerContractAddrBuff = new Buffer(peerContractAddr.slice(2),'hex');
 
         let fundraiser_pda = findProgramAddress('fundraiser', this.program.programId);
 
@@ -44,7 +46,7 @@ class TokenDemoApp {
 
         const settingsPda = findProgramAddress('settings', this.program.programId);
 
-        let instruction = await this.program.methods.initialize(gatewayPubkey).accounts({
+        let instruction = await this.program.methods.initialize(gatewayPubkey, peerContractAddrBuff).accounts({
             maker:this.keypair.publicKey,
             mintAccount:usdcPubKey,
             fundraiser:fundraiser_pda.publicKey,

@@ -5,6 +5,7 @@ pub enum Errors {  //WARNING: Add new errors at the end, DON'T insert it. Otherw
     NotAnAdmin,
     NotAnOperator,
     HasInitialized,
+    ErrorPeerContract,
 
     #[msg("Amount should > 0 .")]
     AmountShouldGreatThanZero,
@@ -17,5 +18,7 @@ pub enum Errors {  //WARNING: Add new errors at the end, DON'T insert it. Otherw
 
     #[msg("Not match with the messate type")]
     NotMatchMessageType
+
+
 }
 

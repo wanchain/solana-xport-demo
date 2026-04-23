@@ -34,7 +34,7 @@ let config = {
         ],
     },
     idl:{
-        dempApp:require('./idl/token_xport_demo.json'),
+        demoApp:require('./idl/token_xport_demo.json'),
         gate_way: require('./idl/abi.SolMessageGateWay.json'),
     },
     SolanaChainId:2147484149,

@@ -31,9 +31,11 @@ pub mod message_data;
 use message_data::*;
 mod errors;
 
-declare_id!("6GpJ1S7PZrREh1XjPZREanuWDSvkDvk21XjrrHLxYSeS");
+declare_id!("4mu1MKadzjZkwQ32H7DT2epqTtMmuEzJdwPEUFrPwvBc");
 
 const USDC_PUBKEY:Pubkey = pubkey!("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
+
+
 
 #[program]
 pub mod token_xport_demo {
@@ -42,13 +44,14 @@ pub mod token_xport_demo {
     use crate::errors::Errors;
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, gateway_program: Pubkey) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>, gateway_program: Pubkey, peer_contract: [u8;20]) -> Result<()> {
         ctx.accounts.fundraiser.set_inner(Fundraiser {
         });
         let settings = &mut ctx.accounts.settings;
-        settings.gateway_program = gateway_program;
+        settings.gateway_program = gateway_program.clone();
         settings.authority = ctx.accounts.maker.key();
-        msg!("Settings initialized with gateway_program: {}", gateway_program);
+        settings.peer_contract = peer_contract.clone();
+        msg!("Settings initialized with gateway_program: {}, peer_contracrt: {:?}", gateway_program, peer_contract);
         Ok(())
     }
 
@@ -56,6 +59,13 @@ pub mod token_xport_demo {
         let settings = &mut ctx.accounts.settings;
         settings.gateway_program = new_gateway_program;
         msg!("Updated gateway progress ID to: {}", new_gateway_program);
+        Ok(())
+    }
+    pub fn update_peer_contract(ctx: Context<UpdateSettings>, peer_contract: [u8;20] )-> Result<()> {
+        let settings = &mut ctx.accounts.settings;
+        settings.peer_contract = peer_contract.clone();
+        msg!("Updated peer contract address is : {:?}", peer_contract);
+
         Ok(())
     }
 
@@ -150,24 +160,7 @@ pub mod token_xport_demo {
         out_bound_call(ctx, peer_chain_id, peer_app_address, function_call_data, gas_limit)?;
         Ok(())
     }
-    pub fn unlock_token(ctx:Context<UnLockAccounts>, amount:u64) -> Result<()> {
-        let authority_seeds:&[&[&[u8]]] = &[&[b"fundraiser", &[ctx.bumps.fundraiser]]];
 
-        let context = CpiContext::new(
-            ctx.accounts.token_program.to_account_info(),
-            Transfer {
-                from:ctx.accounts.vault.to_account_info(),
-                to:ctx.accounts.receiver_token_account.to_account_info(),
-                authority:ctx.accounts.fundraiser.to_account_info(),
-            },
-        ).with_signer(authority_seeds);
-
-        transfer(context, amount);
-
-        msg!("unlock_token, final-- from :{}, to: {}, amount: {}", ctx.accounts.vault.to_account_info().key(), ctx.accounts.receiver_token_account.to_account_info().key(), amount);
-        Ok(())
-
-    }
 
     pub fn wmb_receive(ctx: Context<UnLockAccounts>, data: Vec<u8>) -> Result<()> {
         msg!("WmbReceive called with {} bytes", data.len());
@@ -189,7 +182,14 @@ pub mod token_xport_demo {
 
         msg!("Inbound payload -> network_id: {:?}", inbound.network_id);
         msg!("Inbound payload -> contract_address len: {:?}", inbound.contract_address.len());
-        msg!("Inbound payload -> contract_address: {:?}", inbound.contract_address);
+        msg!("Inbound payload -> contract_address: {:?}", inbound.contract_address.clone());
+
+        let peer_contract_addr = ctx.accounts.settings.peer_contract.clone();
+        if(inbound.contract_address != peer_contract_addr){
+            msg!("inbound.contract_address {:?} != peer_contractg_addr{:?}", inbound.contract_address,peer_contract_addr );
+            return  Err(Errors::ErrorPeerContract.into());
+        }
+
 
         let function_call_data = FunctionCallData::try_from_slice(&inbound.func_call_data)?;
 
@@ -206,7 +206,6 @@ pub mod token_xport_demo {
                         msg!("Processing Message amount {:?}", message_data.amount);
 
                         unlock_token(ctx, message_data.amount)?;
-
 
                     },
                     _=> {
@@ -343,6 +342,25 @@ pub mod token_xport_demo {
 
 }
 
+fn unlock_token(ctx:Context<UnLockAccounts>, amount:u64) -> Result<()> {
+    let authority_seeds:&[&[&[u8]]] = &[&[b"fundraiser", &[ctx.bumps.fundraiser]]];
+
+    let context = CpiContext::new(
+        ctx.accounts.token_program.to_account_info(),
+        Transfer {
+            from:ctx.accounts.vault.to_account_info(),
+            to:ctx.accounts.receiver_token_account.to_account_info(),
+            authority:ctx.accounts.fundraiser.to_account_info(),
+        },
+    ).with_signer(authority_seeds);
+
+    transfer(context, amount);
+
+    msg!("unlock_token, final-- from :{}, to: {}, amount: {}", ctx.accounts.vault.to_account_info().key(), ctx.accounts.receiver_token_account.to_account_info().key(), amount);
+    Ok(())
+
+}
+
 #[account]
 #[derive(InitSpace)]
 pub struct Fundraiser {
@@ -376,7 +394,7 @@ pub struct Initialize<'info>{
     #[account(
     init,
     payer = maker,
-    space = 8+ 32 + 32,
+    space = 8+ 32 + 32 + 20,
     seeds = [b"settings"],
     bump
     )
@@ -555,7 +573,6 @@ pub struct FunctionCallData {
 pub struct Settings {
     pub gateway_program: Pubkey,
     pub authority: Pubkey,
-    pub peer_contract: Vec<u8>,
-
+    pub peer_contract: [u8;20],
 
 }

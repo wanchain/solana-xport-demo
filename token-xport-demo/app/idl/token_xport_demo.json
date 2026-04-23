@@ -1,5 +1,5 @@
 {
-  "address": "6GpJ1S7PZrREh1XjPZREanuWDSvkDvk21XjrrHLxYSeS",
+  "address": "4mu1MKadzjZkwQ32H7DT2epqTtMmuEzJdwPEUFrPwvBc",
   "metadata": {
     "name": "token_xport_demo",
     "version": "0.1.0",
@@ -180,6 +180,15 @@
         {
           "name": "gateway_program",
           "type": "pubkey"
+        },
+        {
+          "name": "peer_contract",
+          "type": {
+            "array": [
+              "u8",
+              20
+            ]
+          }
         }
       ]
     },
@@ -732,184 +741,6 @@
       ]
     },
     {
-      "name": "unlock_token",
-      "discriminator": [
-        160,
-        102,
-        188,
-        56,
-        211,
-        160,
-        144,
-        113
-      ],
-      "accounts": [
-        {
-          "name": "cpi_authority",
-          "signer": true
-        },
-        {
-          "name": "settings",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  115,
-                  101,
-                  116,
-                  116,
-                  105,
-                  110,
-                  103,
-                  115
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "mint_account",
-          "address": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
-        },
-        {
-          "name": "receiver_token_account",
-          "writable": true
-        },
-        {
-          "name": "fundraiser",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  102,
-                  117,
-                  110,
-                  100,
-                  114,
-                  97,
-                  105,
-                  115,
-                  101,
-                  114
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "vault",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "fundraiser"
-              },
-              {
-                "kind": "const",
-                "value": [
-                  6,
-                  221,
-                  246,
-                  225,
-                  215,
-                  101,
-                  161,
-                  147,
-                  217,
-                  203,
-                  225,
-                  70,
-                  206,
-                  235,
-                  121,
-                  172,
-                  28,
-                  180,
-                  133,
-                  237,
-                  95,
-                  91,
-                  55,
-                  145,
-                  58,
-                  140,
-                  245,
-                  133,
-                  126,
-                  255,
-                  0,
-                  169
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "mint_account"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140,
-                151,
-                37,
-                143,
-                78,
-                36,
-                137,
-                241,
-                187,
-                61,
-                16,
-                41,
-                20,
-                142,
-                13,
-                131,
-                11,
-                90,
-                19,
-                153,
-                218,
-                255,
-                16,
-                132,
-                4,
-                142,
-                123,
-                216,
-                219,
-                233,
-                248,
-                89
-              ]
-            }
-          }
-        },
-        {
-          "name": "token_program",
-          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "amount",
-          "type": "u64"
-        }
-      ]
-    },
-    {
       "name": "update_authority",
       "discriminator": [
         32,
@@ -1004,6 +835,60 @@
         {
           "name": "new_gateway_program",
           "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "update_peer_contract",
+      "discriminator": [
+        57,
+        18,
+        255,
+        113,
+        99,
+        215,
+        139,
+        137
+      ],
+      "accounts": [
+        {
+          "name": "settings",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  101,
+                  116,
+                  116,
+                  105,
+                  110,
+                  103,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "settings"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "peer_contract",
+          "type": {
+            "array": [
+              "u8",
+              20
+            ]
+          }
         }
       ]
     },
@@ -1390,6 +1275,15 @@
           {
             "name": "authority",
             "type": "pubkey"
+          },
+          {
+            "name": "peer_contract",
+            "type": {
+              "array": [
+                "u8",
+                20
+              ]
+            }
           }
         ]
       }

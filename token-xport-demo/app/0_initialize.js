@@ -11,8 +11,9 @@ const run = async ()=> {
     let app = new TokenDemoApp(operator);
 
     let gatewayScAddr = config.scAddr.gateway;
+    let peerScAddr = config.peer.WanAppScAddr;
 
-    await app.initialize(gatewayScAddr);
+    await app.initialize(gatewayScAddr, peerScAddr);
 }
 
 run();
