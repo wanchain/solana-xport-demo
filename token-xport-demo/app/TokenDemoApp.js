@@ -29,6 +29,7 @@ class TokenDemoApp {
         console.log('gateway: ', settingData.gatewayProgram.toBase58());
         console.log('authority: ', settingData.authority.toBase58());
         console.log('peerScAddr: ', Buffer.from(settingData.peerContract).toString('hex'));
+        console.log('peerScAddr: ', settingData.peerContract);
 
     }
 

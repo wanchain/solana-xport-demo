@@ -17,7 +17,7 @@ let gateWayApp = new GateWayApp(agent);
 
 let inboundCall = async ()=> {
     let messageData = "0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000093a7f07e94eaf48593905735eac165fee030637500000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000b756e6c6f636b546f6b656e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002b72634d616b4870324d7742597159785844704c61334137514e743451374a6452374d6e657550757a663275000000000000000000000000000000000000000000";
-    let taskId = '0x4ccb59e54932fc7967bcb59fd6ffcd91bc85cbd33d8f74f3807b3fb6289e5c73';
+    let taskId = '0x4ccb59e54932fc7967bcb59fd6ffcd91bc85cbd33d8f74f3807b3fb6289e5c75';
     let ttl = Math.floor(Date.now() / 1000) + 3600 ;
     let networkId = 2147484149;
 
@@ -28,9 +28,9 @@ let inboundCall = async ()=> {
     let funcationCallData = new FunctionCallData([40, 21, 26, 196, 182, 1, 131, 237], rawEvmDataBytes);
     let funcationCallDataByte = funcationCallData.toBorshBytes();
 
-    let inbouCallData = new InboundFunctionCallData(funcationCallDataByte, config.peer.WanChainId, config.peer.WanAppScAddr);
+    let inbouCallData = new InboundFunctionCallData(funcationCallDataByte, config.peer.WanChainId, config.peer.WanAppScAddr.slice(2));
     let inboundCallDataBytes = inbouCallData.toBorshBytes();
-    let tranferTokenAppAbi = config.idl.dempApp;
+    let tranferTokenAppAbi = config.idl.demoApp;
     let contractAddr = new PublicKey(tranferTokenAppAbi.address).toBuffer();
     console.log('contractAddr: ', contractAddr.toString('hex'));
 

@@ -31,7 +31,7 @@ pub mod message_data;
 use message_data::*;
 mod errors;
 
-declare_id!("4mu1MKadzjZkwQ32H7DT2epqTtMmuEzJdwPEUFrPwvBc");
+declare_id!("4qyZxqVyE4JsjoW3jgQFqcmuygUUM1hMNUASobcabgC8");
 
 const USDC_PUBKEY:Pubkey = pubkey!("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
 
@@ -184,9 +184,19 @@ pub mod token_xport_demo {
         msg!("Inbound payload -> contract_address len: {:?}", inbound.contract_address.len());
         msg!("Inbound payload -> contract_address: {:?}", inbound.contract_address.clone());
 
-        let peer_contract_addr = ctx.accounts.settings.peer_contract.clone();
-        if(inbound.contract_address != peer_contract_addr){
-            msg!("inbound.contract_address {:?} != peer_contractg_addr{:?}", inbound.contract_address,peer_contract_addr );
+
+
+        let data2 = ctx.accounts.settings.peer_contract.clone();
+        let data1 = inbound.contract_address.clone();
+
+        let inboundScAddr = String::try_from(data1).unwrap().to_lowercase();
+        let peer_contract_addr = hex::encode(data2).to_lowercase();
+
+
+
+
+        if(inboundScAddr != peer_contract_addr){
+            msg!("inboundScAddr {:?} != peer_contract_addr{:?}", inboundScAddr,peer_contract_addr );
             return  Err(Errors::ErrorPeerContract.into());
         }
 

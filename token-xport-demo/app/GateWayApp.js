@@ -26,7 +26,7 @@ class GateWayApp {
 
         let signer = this.keypair;
 
-        let tranferTokenAppIdl = config.idl.dempApp;
+        let tranferTokenAppIdl = config.idl.demoApp;
         let tranferTokenAppAddr= tranferTokenAppIdl.address;
         let tranferTokenAppAccount = new PublicKey(tranferTokenAppAddr);
 

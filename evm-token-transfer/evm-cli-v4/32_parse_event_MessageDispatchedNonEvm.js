@@ -9,7 +9,7 @@ const { ethers } = require('ethers');
 
 let web3 = new Web3(new Web3.providers.HttpProvider(config.nodeUrl));
 
-let txHash = "0x913cd5470e4bf2600e28afb32a2616e27d1a87c7ce7650e95914b03be0f609df";
+let txHash = "0x67d9130f485ee2040a5b532917ff92f8f2f0748a4aad51d8f5228acbe4673cdf";
 
 let eventName = "MessageDispatchedNonEvm";
 

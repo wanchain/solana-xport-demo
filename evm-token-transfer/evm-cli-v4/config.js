@@ -6,9 +6,9 @@ let config = {
 
 
     solChainID : 2147484149,
-    SolScAddr : "6GpJ1S7PZrREh1XjPZREanuWDSvkDvk21XjrrHLxYSeS",
+    SolScAddr : "4qyZxqVyE4JsjoW3jgQFqcmuygUUM1hMNUASobcabgC8",
 
-    solUserAddr: '7W9auyNhW7iAffWDTvK5a1AbS978o3dkHFqZhvGysX9m',
+    solUserAddr: '7W9auyNhW7iAffWDTvK5  1AbS978o3dkHFqZhvGysX9m',
     solUserATA:"rcMakHp2MwBYqYxXDpLa3A7QNt4Q7JdR7MneuPuzf2u",
     adminUser:"0x93a7f07e94EAF48593905735EAC165fEE0306375", // library main
     receiptUserAddr:'0x93a7f07e94EAF48593905735EAC165fEE0306375',
