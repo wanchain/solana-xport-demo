@@ -5,14 +5,14 @@ package_manager = "yarn"
 resolution = true
 skip-lint = false
 
-[programs.localnet]
-token_xport_demo = "2u9YUs8bfPDc6eyvd2UxGCh72aGbEMHS9D6xV7tFdy3E"
+[programs."https://solana-devnet.core.chainstack.com/4b5a9c0315d01b08fc16d66212bc27dc"]
+token_xport_demo = "BsjeVK6i6NZ6RvvSrbvEUD3VbVpVuyjb2CgCGNo9v3mN"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "https://api.devnet.solana.com"
+cluster = "https://solana-devnet.core.chainstack.com/4b5a9c0315d01b08fc16d66212bc27dc"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

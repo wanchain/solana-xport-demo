@@ -31,7 +31,7 @@ pub mod message_data;
 use message_data::*;
 mod errors;
 
-declare_id!("4qyZxqVyE4JsjoW3jgQFqcmuygUUM1hMNUASobcabgC8");
+declare_id!("BsjeVK6i6NZ6RvvSrbvEUD3VbVpVuyjb2CgCGNo9v3mN");
 
 const USDC_PUBKEY:Pubkey = pubkey!("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
 
