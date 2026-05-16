@@ -33,7 +33,7 @@ mod errors;
 
 declare_id!("BsjeVK6i6NZ6RvvSrbvEUD3VbVpVuyjb2CgCGNo9v3mN");
 
-const USDC_PUBKEY:Pubkey = pubkey!("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
+const USDC_PUBKEY:Pubkey = pubkey!("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
 
 
 
