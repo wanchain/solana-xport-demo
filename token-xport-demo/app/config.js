@@ -44,7 +44,7 @@ let config = {
         WanUserAddr:'0x93a7f07e94EAF48593905735EAC165fEE0306375',
     },
     scAddr:{
-        USDC:'4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU',
+        USDC:'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
         gateway:"9J17hVJXCcMsD1E7Kv5yNKEgQAhwcu4NvtPQvXkgesiV",
         adminBoardAddr:'7jYCM8k5Nvwg5vyPpLk2yjivQhexPDMXuK8CSbUKqL6B',
     },

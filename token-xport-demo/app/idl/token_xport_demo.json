@@ -1,5 +1,5 @@
 {
-  "address": "4qyZxqVyE4JsjoW3jgQFqcmuygUUM1hMNUASobcabgC8",
+  "address": "BsjeVK6i6NZ6RvvSrbvEUD3VbVpVuyjb2CgCGNo9v3mN",
   "metadata": {
     "name": "token_xport_demo",
     "version": "0.1.0",
@@ -27,7 +27,7 @@
         },
         {
           "name": "mint_account",
-          "address": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+          "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
         },
         {
           "name": "fundraiser",
@@ -336,7 +336,7 @@
         },
         {
           "name": "mint_account",
-          "address": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+          "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
         },
         {
           "name": "sender_token_account",
@@ -612,7 +612,7 @@
         },
         {
           "name": "mint_account",
-          "address": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+          "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
         },
         {
           "name": "sender_token_account",
@@ -931,7 +931,7 @@
         },
         {
           "name": "mint_account",
-          "address": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+          "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
         },
         {
           "name": "receiver_token_account",
