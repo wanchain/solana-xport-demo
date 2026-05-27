@@ -50,7 +50,7 @@ abstract contract WmbAppNoEvm is Ownable {
         return IWmbGatewayNonEvm(wmbGateway).dispatchMessageNonEvm(toChainId, to, gasLimit, data);
     }
 
-    function setTrustedRemote(uint fromChainId, bytes memory from, bool trusted) public {
+    function setTrustedRemote(uint fromChainId, bytes memory from, bool trusted) public  onlyOwner{
         trustedRemotes[fromChainId][from] = trusted;
         emit SetTrustedRemote(fromChainId, from, trusted);
     }
