@@ -46,7 +46,7 @@ module.exports = {
     wanmain: {
       url: "https://gwan-ssl.wandevs.org:56891",
             accounts: {
-        mnemonic:"",
+        mnemonic:require("./evm-cli-v4/config").words,
         path: "m/44'/60'/0'/0",
         initialIndex: 0,
         count: 20,
