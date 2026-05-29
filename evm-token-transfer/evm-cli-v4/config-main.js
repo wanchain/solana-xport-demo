@@ -1,4 +1,5 @@
 let config = {
+    type:"main",
     tokenTransferScAddr:'0x2C502f4c7A98655D0d1A9A9aefa5c1b7e2750373',
 
     gateWayScAddr:"0x7280E3b8c686c68207aCb1A4D656b2FC8079c033",
