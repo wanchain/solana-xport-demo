@@ -447,6 +447,16 @@
       "code": 6014,
       "name": "TtlExpired",
       "msg": "TTL has expired"
+    },
+    {
+      "code": 6015,
+      "name": "TaskIdMismatch",
+      "msg": "Arg's task_id not match the one from EncodeInfo"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidNetworkId",
+      "msg": "Invalid network id"
     }
   ],
   "types": [
@@ -652,6 +662,10 @@
           {
             "name": "b_executed",
             "type": "bool"
+          },
+          {
+            "name": "ttl",
+            "type": "u64"
           }
         ]
       }
