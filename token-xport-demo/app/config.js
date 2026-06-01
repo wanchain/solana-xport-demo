@@ -26,7 +26,7 @@ let config = {
     peer:{
         WanChainId:2153201998,
         WanAppScAddr:'0x2C502f4c7A98655D0d1A9A9aefa5c1b7e2750373',
-        WanUserAddr:'0x93a7f07e94EAF48593905735EAC165fEE0306375',
+        WanUserAddr:'0xbcD0B1a878192ce12dB0694FB8F592b802A9E11B',
     },
     scAddr:{
         USDC:'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
