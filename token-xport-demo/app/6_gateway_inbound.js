@@ -1,7 +1,7 @@
 
 const config = require('./config');
 const GateWayApp = require('./GateWayApp');
-const {tokenAgent, tokenLocker, tokenOperater} = require('./test_wallets');
+const {tokenAgent, tokenLocker, tokenOperater} = require('./mainnet_wallets');
 const {    InboundFunctionCallData,
     EncodeInfo,
     EncodeProof,

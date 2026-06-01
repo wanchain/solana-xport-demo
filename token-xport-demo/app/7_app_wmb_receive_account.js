@@ -1,6 +1,6 @@
 const {
     tokenAgent, tokenLocker, tokenOperater
-} = require('./test_wallets');
+} = require('./mainnet_wallets');
 
 const config = require('./config');
 

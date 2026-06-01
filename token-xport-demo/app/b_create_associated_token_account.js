@@ -4,7 +4,7 @@ const {getAssociatedTokenAddressSync, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM
 
 const config = require('./config');
 const {  SystemProgram, Transaction,  ComputeBudgetProgram, PublicKey, Connection} = require("@solana/web3.js");
-const {tokenOperater} = require("./test_wallets");
+const {tokenOperater} = require("./mainnet_wallets");
 
 
 const main = async () => {
