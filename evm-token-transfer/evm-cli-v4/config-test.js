@@ -13,7 +13,7 @@ let config = {
     solUserATA:"rcMakHp2MwBYqYxXDpLa3A7QNt4Q7JdR7MneuPuzf2u",
     adminUser:"0x93a7f07e94EAF48593905735EAC165fEE0306375", // library main
     receiptUserAddr:'0x93a7f07e94EAF48593905735EAC165fEE0306375',
-    words:'library ankle bone oxygen ripple zoo bronze tent cart hip march vacant'
+    words:''
 }
 
 module.exports = config;
