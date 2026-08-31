@@ -32,13 +32,13 @@ contract ERC20TokenRemote is WmbAppNoEvm, ERC20 {
         return _DECIMALS;
     }
 
-    function updateHomeAddress(bytes memory _homeAddress, uint256 _homeChainId) public {
+    function updateHomeAddress(bytes memory _homeAddress, uint256 _homeChainId) public onlyOwner {
         homeAddress = _homeAddress;
         homeChainId = _homeChainId;
         setTrustedRemote(_homeChainId, _homeAddress, true);
     }
 
-    function updateWmbGateway(address _wmbGateway) public {
+    function updateWmbGateway(address _wmbGateway) public onlyOwner {
         wmbGateway = _wmbGateway;
     }
         
