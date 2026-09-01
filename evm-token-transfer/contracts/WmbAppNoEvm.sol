@@ -29,7 +29,7 @@ abstract contract WmbAppNoEvm is Ownable {
         bytes memory from
     ) virtual external {
         // Only the WMB gateway can call this function
-        //require(msg.sender == wmbGateway, "WmbApp: Only WMB gateway can call this function");
+        require(msg.sender == wmbGateway, "WmbApp: Only WMB gateway can call this function");
         require(trustedRemotes[fromChainId][from], "WmbApp: Remote is not trusted");
         _wmbReceive(data, messageId, fromChainId, from);
     }
