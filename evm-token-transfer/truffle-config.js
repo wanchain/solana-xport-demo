@@ -100,9 +100,8 @@ module.exports = {
       host: '127.0.0.1',
       port: 8545,
       network_id: "*",
-      deployer: "0xEf73Eaa714dC9a58B0990c40a01F4C0573599959",
-      admin: "0xdC49B58d1Dc15Ff96719d743552A3d0850dD7057",
-      routeAddress :     "0x3000000000000000000000000000000000000000"
+      deployer: "0x...example",
+      admin: "0x...example"
     }
   },
 
